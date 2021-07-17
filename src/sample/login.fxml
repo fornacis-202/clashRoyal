@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" spacing="25.0" stylesheets="@meanmenu.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Clash Of Royal!" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameTextField" promptText="Username">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <PasswordField fx:id="passwordTextField" cache="true" promptText="Password">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+      <Label fx:id="incorrectUserPassLabel" styleClass="colorred" maxHeight="-Infinity" prefHeight="13.0" prefWidth="170.0" text="Username or password is incorrect" textFill="RED" visible="false">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Button fx:id="logun" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginPressed" prefHeight="39.0" prefWidth="370.0" style="-fx-background-color: #1e90ff;" styleClass="colorwhite" text="Login" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label text="Or">
+         <VBox.margin>
+            <Insets bottom="-15.0" left="-15.0" right="-15.0" top="-15.0" />
+         </VBox.margin>
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerPressed" prefHeight="38.0" prefWidth="370.0" style="-fx-background-color: #1e90ff;" styleClass="colorwhite" text="Register" textAlignment="CENTER" textFill="#fffffffc" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label text="If you don't have an account yet.">
+         <font>
+            <Font size="11.0" />
+         </font>
+         <padding>
+            <Insets bottom="-15.0" left="-15.0" right="-15.0" top="-15.0" />
+         </padding>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+   </padding>
+</VBox>
