@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GameController">
+   <children>
+      <ListView fx:id="cardListView" layoutX="1.0" prefHeight="500.0" prefWidth="100.0" />
+      <ImageView fitHeight="500.0" fitWidth="848.0" layoutX="2.0">
+         <image>
+            <Image url="@Capture.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="gamePane" layoutX="101.0" onMouseClicked="#mouseClickedOnPane" prefHeight="463.0" prefWidth="750.0" />
+      <Label fx:id="elixirLabel" layoutX="24.0" layoutY="452.0" text="Label" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="456.0" layoutY="463.0" prefHeight="28.0" prefWidth="42.0" text="Label" textAlignment="CENTER" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="enemyStarsLabel" layoutX="657.0" layoutY="456.0" text="***" textFill="#ffe100" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="friendlyStarsLabel" layoutX="253.0" layoutY="457.0" text="***" textFill="#ffe100" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

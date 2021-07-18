@@ -7,16 +7,17 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="750.0" side="BOTTOM" stylesheets="@meanmenu.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" side="BOTTOM" stylesheets="@meanmenu.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
   <tabs>
-    <Tab text="               Profile               ">
+    <Tab text="     Profile      ">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="396.0" prefWidth="750.0" spacing="5.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="543.0" prefWidth="450.0" spacing="5.0">
                      <children>
                         <Label fx:id="nameLabel" styleClass="boldlabel" text="Name">
                            <font>
@@ -33,9 +34,9 @@
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ListView fx:id="deckListViewProfile" orientation="HORIZONTAL" prefHeight="118.0" prefWidth="650.0">
+                        <ListView fx:id="deckListViewProfile" maxWidth="-Infinity" prefHeight="423.0" prefWidth="124.0">
                            <VBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="60.0" />
+                              <Insets bottom="5.0" left="20.0" right="20.0" />
                            </VBox.margin>
                         </ListView>
                      </children>
@@ -49,42 +50,50 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="              Battle Deck           ">
+      <Tab text="Battle Deck">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="394.0" prefWidth="750.0">
+                  <HBox alignment="CENTER" prefHeight="544.0" prefWidth="450.0">
                      <children>
-                        <ListView fx:id="deckListView" orientation="HORIZONTAL" prefHeight="118.0" prefWidth="750.0" />
-                        <Button mnemonicParsing="false" onAction="#removeButtonPressed" style="-fx-background-color: #ff0000;" styleClass="colorwhite" text="Remove" textFill="#d70202">
-                           <VBox.margin>
-                              <Insets bottom="110.0" />
-                           </VBox.margin>
+                        <ListView fx:id="deckListView" prefHeight="544.0" prefWidth="118.0">
+                           <HBox.margin>
+                              <Insets top="-5.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets top="-5.0" />
+                           </padding>
+                        </ListView>
+                        <Button graphicTextGap="1.0" mnemonicParsing="false" onAction="#removeButtonPressed" prefHeight="36.0" prefWidth="106.0" style="-fx-background-color: #ff0000;" styleClass="colorwhite" text="Remove" textFill="#d70202">
+                           <HBox.margin>
+                              <Insets right="65.0" />
+                           </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#addButtonPressed" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #04b238;" styleClass="colorwhite" text="Add" textFill="#04b238" />
-                        <ListView fx:id="notDeckListView" prefHeight="102.0" prefWidth="743.0" />
+                        <Button mnemonicParsing="false" onAction="#addButtonPressed" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #04b238;" styleClass="colorwhite" text="Add" textFill="#04b238" />
+                        <ListView fx:id="notDeckListView" fixedCellSize="-10.0" prefHeight="544.0" prefWidth="110.0">
+                           <padding>
+                              <Insets bottom="-30.0" left="-30.0" right="-30.0" top="-30.0" />
+                           </padding>
+                        </ListView>
                      </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </VBox>
+                  </HBox>
                </children></AnchorPane>
         </content>
       </Tab>
-      <Tab text="               Training Camp           ">
+      <Tab text="Training Camp ">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="155.0" layoutY="105.0" mnemonicParsing="false" onAction="#playWithSmartBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with smart bot" textFill="#f0a141" />
-                  <Button layoutX="483.0" layoutY="235.0" mnemonicParsing="false" onAction="#playWithIdiotBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with idiot bot" />
+                  <Button layoutX="82.0" layoutY="139.0" mnemonicParsing="false" onAction="#playWithSmartBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with smart bot" textFill="#f0a141" />
+                  <Button layoutX="238.0" layoutY="345.0" mnemonicParsing="false" onAction="#playWithIdiotBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with idiot bot" />
                </children></AnchorPane>
         </content>
       </Tab>
-    <Tab text="           Battle History          ">
+    <Tab text="Battle History">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ListView layoutY="-1.0" prefHeight="394.0" prefWidth="750.0" />
+                  <ListView layoutY="-1.0" prefHeight="544.0" prefWidth="450.0" />
                </children></AnchorPane>
       </content>
     </Tab>

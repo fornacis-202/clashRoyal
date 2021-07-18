@@ -24,10 +24,12 @@ public class Account implements Serializable {
     public void addDeck(Card card){
         if(deck.size()<8){
             deck.add(card);
+            saveAccount();
         }
     }
     public void removeDeck(Card card){
         deck.remove(card);
+        saveAccount();
     }
     private void calculateLevel(){
         if(XP<400)
@@ -80,9 +82,11 @@ public class Account implements Serializable {
         }
     }
     private void putInSimpleArray(){
+        deckToSave=new ArrayList<>();
         deckToSave.addAll(deck);
     }
     public void initializeDeck(){
+        deck=FXCollections.observableArrayList();
         deck.addAll(deckToSave);
     }
 
