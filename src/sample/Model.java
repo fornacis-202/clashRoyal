@@ -26,11 +26,11 @@ public class Model {
     private final int tile=20;
 
 
-    public Model(Bot bot){
-        account=AccountHolder.getAccount();
+    public Model(){
+        account= SharedData.getAccount();
         friendlyComponent=new ArrayList<>();
         enemyComponent=new ArrayList<>();
-        frameRate=View.getInstance().getFrameRate();
+        frameRate=View.getFrameRate();
         friendlyElixir  = new ElixirGenerator(frameRate, 3);
         enemyElixir  = new ElixirGenerator(frameRate, 3);
         timer=new MyTimer(frameRate,180);
@@ -39,7 +39,7 @@ public class Model {
         gameIsFinished=false;
         friendlyDeck=new DeckInGame(account.getDeck());
         enemyDeck=new DeckInGame(account.getDeck());
-        this.bot=bot;
+        this.bot=SharedData.getBot();
         initialize();
 
 
@@ -321,4 +321,27 @@ public class Model {
         return account;
     }
 
+    public DeckInGame getFriendlyDeck() {
+        return friendlyDeck;
+    }
+
+    public boolean isGameIsFinished() {
+        return gameIsFinished;
+    }
+
+    public ElixirGenerator getFriendlyElixir() {
+        return friendlyElixir;
+    }
+
+    public MyTimer getTimer() {
+        return timer;
+    }
+
+    public String getFriendlyStars() {
+        return friendlyStars;
+    }
+
+    public String getEnemyStars() {
+        return enemyStars;
+    }
 }

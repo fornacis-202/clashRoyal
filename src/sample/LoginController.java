@@ -41,7 +41,7 @@ public class LoginController {
             incorrectUserPassLabel.setVisible(true);
         }else {
             incorrectUserPassLabel.setVisible(false);
-            AccountHolder.setAccount(account);
+            SharedData.setAccount(account);
             switchToMenu(event);
         }
 
@@ -56,7 +56,7 @@ public class LoginController {
             incorrectUserPassLabel.setVisible(true);
         }else {
             incorrectUserPassLabel.setVisible(false);
-            AccountHolder.setAccount(account);
+            SharedData.setAccount(account);
             switchToMenu(event);
         }
 

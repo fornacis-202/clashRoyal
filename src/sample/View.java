@@ -11,7 +11,7 @@ public class View {
         return view;
     }
 
-    public int getFrameRate() {
+    public static int getFrameRate() {
         return frameRate;
     }
 }

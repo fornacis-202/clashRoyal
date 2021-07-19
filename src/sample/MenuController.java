@@ -13,8 +13,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.Style;
 
 import java.io.IOException;
 
@@ -41,7 +39,7 @@ public class MenuController {
     private ListView<Card> deckListViewProfile;
 
     public void initialize(){
-        account=AccountHolder.getAccount();
+        account= SharedData.getAccount();
         deckListView.setItems(account.getDeck());
         deckListViewProfile.setItems(account.getDeck());
         notDeckListView.setItems(notDeckCards);
@@ -97,6 +95,7 @@ public class MenuController {
     @FXML
     void playWithIdiotBotPressed(ActionEvent event) {
         if(account.getDeck().size()==8){
+            SharedData.setBot(Bot.IDIOT_BOT);
             switchToGame(event);
         }
 
@@ -105,6 +104,7 @@ public class MenuController {
     @FXML
     void playWithSmartBotPressed(ActionEvent event) {
         if(account.getDeck().size()==8){
+            SharedData.setBot(Bot.SMART_BOT);
             switchToGame(event);
         }
 

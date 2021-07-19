@@ -17,25 +17,32 @@
          </image>
       </ImageView>
       <Pane fx:id="gamePane" layoutX="101.0" onMouseClicked="#mouseClickedOnPane" prefHeight="463.0" prefWidth="750.0" />
-      <Label fx:id="elixirLabel" layoutX="24.0" layoutY="452.0" text="Label" textFill="WHITE" visible="false">
+      <Label fx:id="endGameLabel" alignment="CENTER" layoutX="220.0" layoutY="161.0" text="YOU WIN!">
+         <font>
+            <Font name="System Bold" size="96.0" />
+         </font>
+      </Label>
+      <Label fx:id="elixirLabel" layoutX="24.0" layoutY="452.0" text="Label" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="timeLabel" alignment="CENTER" layoutX="456.0" layoutY="463.0" prefHeight="28.0" prefWidth="42.0" text="Label" textAlignment="CENTER" textFill="WHITE" visible="false">
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="456.0" layoutY="463.0" prefHeight="28.0" prefWidth="42.0" text="Label" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="enemyStarsLabel" layoutX="657.0" layoutY="456.0" text="***" textFill="#ffe100" visible="false">
+      <Label fx:id="enemyStarsLabel" layoutX="657.0" layoutY="456.0" text="***" textFill="#ffe100">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="friendlyStarsLabel" layoutX="253.0" layoutY="457.0" text="***" textFill="#ffe100" visible="false">
+      <Label fx:id="friendlyStarsLabel" layoutX="253.0" layoutY="457.0" text="***" textFill="#ffe100">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <Label layoutX="10.0" layoutY="407.0" text="Next:" />
+      <ImageView fx:id="nextCardImageView" fitHeight="53.0" fitWidth="48.0" layoutX="39.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
