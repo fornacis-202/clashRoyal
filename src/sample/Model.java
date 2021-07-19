@@ -16,6 +16,9 @@ public class Model {
     private String friendlyStars;
     private String enemyStars;
     private boolean gameIsFinished;
+    private DeckInGame friendlyDeck;
+    private DeckInGame enemyDeck;
+    private Bot bot;
 
 
     private final int frameRate;
@@ -23,7 +26,8 @@ public class Model {
     private final int tile=20;
 
 
-    public Model(){
+    public Model(Bot bot){
+        account=AccountHolder.getAccount();
         friendlyComponent=new ArrayList<>();
         enemyComponent=new ArrayList<>();
         frameRate=View.getInstance().getFrameRate();
@@ -32,19 +36,17 @@ public class Model {
         timer=new MyTimer(frameRate,180);
         friendlyStars="";
         enemyStars="";
-        initialize();
         gameIsFinished=false;
+        friendlyDeck=new DeckInGame(account.getDeck());
+        enemyDeck=new DeckInGame(account.getDeck());
+        this.bot=bot;
+        initialize();
+
 
     }
 
 
-    private static Model model;
-    public static Model getInstance() {
-        if(model==null){
-            model=new Model();
-        }
-        return model;
-    }
+
 
 
     private void initialize(){
@@ -58,9 +60,47 @@ public class Model {
         enemyComponent.addAll(ComponentGenerator.generate(Role.KING_TOWER,new Point2D(700,222),account.getLevel(),1));
 
     }
+    public void friendlyAddComponent(Card card,Point2D position){
+        if(card.getCost()<=friendlyElixir.getAmount() && whichArea(position) == 1){
+            friendlyElixir.reduceAmount(card.getCost());
+            friendlyDeck.removeCard(card);
+            friendlyComponent.addAll(ComponentGenerator.generate(card.getRole(),position,card.getLevel(),card.getCount()));
+        }
+    }
+    public String endGame(){
+        String output;
+        if(friendlyStars.length() > enemyStars.length()){
+            account.addXP(200);
+            output = "YOU WIN!";
+
+
+        }else if(enemyStars.length() > friendlyStars.length()){
+            account.addXP(70);
+            output = "YOU LOSE :(";
+
+        }else {
+            account.addXP(130);
+            output = "DRAW :)";
+
+
+        }
+        account.getHistory().add(account.getName(),friendlyStars,bot.toString(),enemyStars);
+        account.saveAccount();
+        return output;
+    }
+    private void enemyAddComponent(Card card,Point2D position){
+        if(card.getCost()<=enemyElixir.getAmount() && whichArea(position) == 3){
+            enemyElixir.reduceAmount(card.getCost());
+            enemyDeck.removeCard(card);
+            enemyComponent.addAll(ComponentGenerator.generate(card.getRole(),position,card.getLevel(),card.getCount()));
+        }
+    }
+
 
     public void update(long counter){
         timer.step(counter);
+        friendlyElixir.step(counter);
+        enemyElixir.step(counter);
         for(Component component : friendlyComponent){
             step(component,friendlyComponent,enemyComponent,counter,1.0);
         }

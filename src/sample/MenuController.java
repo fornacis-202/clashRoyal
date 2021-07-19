@@ -41,7 +41,7 @@ public class MenuController {
     private ListView<Card> deckListViewProfile;
 
     public void initialize(){
-        account=Model.getInstance().getAccount();
+        account=AccountHolder.getAccount();
         deckListView.setItems(account.getDeck());
         deckListViewProfile.setItems(account.getDeck());
         notDeckListView.setItems(notDeckCards);

@@ -41,7 +41,7 @@ public class LoginController {
             incorrectUserPassLabel.setVisible(true);
         }else {
             incorrectUserPassLabel.setVisible(false);
-            Model.getInstance().setAccount(account);
+            AccountHolder.setAccount(account);
             switchToMenu(event);
         }
 
@@ -56,7 +56,7 @@ public class LoginController {
             incorrectUserPassLabel.setVisible(true);
         }else {
             incorrectUserPassLabel.setVisible(false);
-            Model.getInstance().setAccount(account);
+            AccountHolder.setAccount(account);
             switchToMenu(event);
         }
 
