@@ -26,6 +26,8 @@ public abstract class Force extends Component {
             HP=0;
     }
 
+
+
     public Class getTargetType() {
         return targetType;
     }

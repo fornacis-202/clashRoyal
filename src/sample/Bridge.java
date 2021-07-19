@@ -2,8 +2,8 @@ package sample;
 
 import javafx.geometry.Point2D;
 
-public class Bridge extends Component{
-    public Bridge(Point2D position, int range, Role role) {
-        super(position, range, role);
+public class Bridge extends DefenseBuilding{
+    public Bridge(Point2D position ) {
+        super(position, 0, null ,0,0,0,null,false,0.0);
     }
 }
