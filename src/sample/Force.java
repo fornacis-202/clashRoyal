@@ -9,6 +9,7 @@ public abstract class Force extends Component {
     private Class targetType ;
     private boolean isAttacking;
     private Force target;
+    private final int constantHP;
 
     private boolean isAreaSplash;
 
@@ -16,6 +17,7 @@ public abstract class Force extends Component {
         super(position,range,role);
         this.hitSpeed=hitSpeed;
         this.HP=HP;
+        this.constantHP=HP;
         this.damage=damage;
         this.targetType=targetType;
         this.isAttacking=false;
@@ -64,5 +66,9 @@ public abstract class Force extends Component {
 
     public void setTarget(Force target) {
         this.target = target;
+    }
+
+    private double getHPPercent(){
+        return ((double)HP )/constantHP;
     }
 }
