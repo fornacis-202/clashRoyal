@@ -51,7 +51,7 @@ public class ComponentGenerator {
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
-                components.add(new GroundSoldier(position1,5,Role.PEKKA,1.8,HP,damage,Ground.class,false,Speed.FAST));
+                components.add(new GroundSoldier(position1,1,Role.PEKKA,1.8,HP,damage,Ground.class,false,Speed.FAST));
             }
 
         }else if(role.equals(Role.GIANT)){

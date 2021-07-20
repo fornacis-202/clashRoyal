@@ -68,7 +68,7 @@ public abstract class Force extends Component {
         this.target = target;
     }
 
-    private double getHPPercent(){
+    public double getHPPercent(){
         return ((double)HP )/constantHP;
     }
 }

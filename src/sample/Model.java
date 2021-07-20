@@ -23,7 +23,7 @@ public class Model {
 
 
     private final int frameRate;
-    private final int step=1;
+    private final int step=5;
     private final int tile=20;
 
 
@@ -51,8 +51,8 @@ public class Model {
 
 
     private void initialize(){
-        bridge1=new Bridge(new Point2D(375,90));
-        bridge2=new Bridge(new Point2D(375,350));
+        bridge1=new Bridge(new Point2D(340,90));
+        bridge2=new Bridge(new Point2D(340,360));
         friendlyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(50,85),account.getLevel(),1));
         friendlyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(50,360),account.getLevel(),1));
         friendlyComponent.addAll(ComponentGenerator.generate(Role.KING_TOWER,new Point2D(50,222),account.getLevel(),1));
@@ -289,8 +289,8 @@ public class Model {
     }
 
     private boolean isHitTime(Force force,long counter){
-        int now = (int) ((counter/frameRate) / force.getHitSpeed());
-        int previous = (int) ((counter-1/frameRate) / force.getHitSpeed());
+        int now = (int) (((counter/(double)frameRate) / force.getHitSpeed()));
+        int previous = (int) ((((counter-1)/(double)frameRate) / force.getHitSpeed()));
         if(now-previous==1)
             return true;
         else
@@ -328,11 +328,11 @@ public class Model {
     }
 
     private int whichArea(Point2D position){
-        if(position.distance(bridge1.getPosition())<20 || position.distance(bridge2.getPosition())<20){
+        if(position.distance(bridge1.getPosition())<10|| position.distance(bridge2.getPosition())<10){
             return 2;
-        }else if(position.getX()<360){
+        }else if(position.getX()<335){
             return 1;
-        }else if(position.getX()>390) {
+        }else if(position.getX()>335) {
             return 3;
         }else
             return 0;
@@ -370,4 +370,13 @@ public class Model {
     public String getEnemyStars() {
         return enemyStars;
     }
+
+    public ArrayList<Component> getFriendlyComponent() {
+        return friendlyComponent;
+    }
+
+    public ArrayList<Component> getEnemyComponent() {
+        return enemyComponent;
+    }
 }
+

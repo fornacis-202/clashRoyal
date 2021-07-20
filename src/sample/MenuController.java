@@ -27,6 +27,9 @@ public class MenuController {
     private ListView<Card> notDeckListView;
 
     @FXML
+    private ListView<String> historyListView;
+
+    @FXML
     private Label nameLabel;
 
     @FXML
@@ -77,6 +80,9 @@ public class MenuController {
             card.setLevel(account.getLevel());
             notDeckCards.remove(card);
         }
+        ObservableList<String> historyList = FXCollections.observableArrayList();
+        historyList.addAll(account.getHistory().getGames());
+        historyListView.setItems(historyList);
 
 
     }

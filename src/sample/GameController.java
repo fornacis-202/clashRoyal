@@ -90,6 +90,7 @@ public class GameController {
                     }
                 }
         );
+        view.setPane(gamePane);
         startTimer();
 
     }
@@ -113,9 +114,7 @@ public class GameController {
         if(! model.isGameIsFinished()){
             counter++;
             model.update(counter);
-            //updateView
-
-
+            view.update(model);
             elixirLabel.setText(""+model.getFriendlyElixir().getAmount());
             elixirLabel.setAlignment(Pos.CENTER);
             timeLabel.setText(""+model.getTimer().getSeconds());
