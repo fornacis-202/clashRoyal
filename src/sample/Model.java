@@ -232,7 +232,12 @@ public class Model {
                 //valkyrie hit
                 hitValkyrie(force,enemyComponent,magnitude);
 
-            }else if(force.isAreaSplash()){
+            }else if(force.getRole().equals(Role.INFERNO)){
+                //Inferno hit
+                DefenseBuilding defenseBuilding = (DefenseBuilding) force;
+                hitInferno(defenseBuilding,enemyComponent,magnitude);
+
+            } else if(force.isAreaSplash()){
                 //areaSplash hit
                 hitAreaSplash(force,enemyComponent,magnitude);
             }else {
@@ -243,6 +248,21 @@ public class Model {
             }
 
     }
+    private void hitInferno(DefenseBuilding defenseBuilding, ArrayList<Component> enemyComponent,double magnitude){
+        ArrayList<Force> damagedForces = new ArrayList<>();
+        for(Component component : enemyComponent){
+            if(defenseBuilding.getTargetType().isInstance(component) && defenseBuilding.getPosition().distance(component.getPosition()) <defenseBuilding.getRange()){
+                Force targetForce = (Force) component;
+                damagedForces.add(targetForce);
+
+            }
+            for (Force target : damagedForces){
+                target.reduceHP((int) (defenseBuilding.getDamage()*magnitude *(1.0/damagedForces.size())));
+            }
+
+        }
+    }
+
     private void hitValkyrie(Force force, ArrayList<Component> enemyComponent,double magnitude){
         for(Component component : enemyComponent){
             if(force.getTargetType().isInstance(component) && force.getPosition().distance(component.getPosition()) <2* tile){
