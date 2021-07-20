@@ -51,7 +51,7 @@ public class MenuController {
                 new Callback<ListView<Card>, ListCell<Card>>() {
                     @Override
                     public ListCell<Card> call(ListView<Card> listView) {
-                        return new ImageTextCell();
+                        return new ImageTextCell(100);
                     }
                 }
         );
@@ -59,7 +59,7 @@ public class MenuController {
                 new Callback<ListView<Card>, ListCell<Card>>() {
                     @Override
                     public ListCell<Card> call(ListView<Card> listView) {
-                        return new ImageTextCell();
+                        return new ImageTextCell(100);
                     }
                 }
         );
@@ -67,7 +67,7 @@ public class MenuController {
                 new Callback<ListView<Card>, ListCell<Card>>() {
                     @Override
                     public ListCell<Card> call(ListView<Card> listView) {
-                        return new ImageTextCell();
+                        return new ImageTextCell(100);
                     }
                 }
         );

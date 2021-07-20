@@ -17,11 +17,11 @@ public class ImageTextCell extends ListCell<Card> {
     private Label label = new Label();
 
     // constructor configures VBox, ImageView and Label
-    public ImageTextCell() {
+    public ImageTextCell(double height) {
         vbox.setAlignment(Pos.CENTER); // center VBox contents horizontally
 
         thumbImageView.setPreserveRatio(true);
-        thumbImageView.setFitHeight(100.0); // thumbnail 100 points tall
+        thumbImageView.setFitHeight(height); // thumbnail 100 points tall
         vbox.setFillWidth(false);
         vbox.getChildren().add(thumbImageView); // attach to Vbox
 

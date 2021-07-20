@@ -1,17 +1,32 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class GameController {
     private  int frameRate ;
@@ -35,6 +50,9 @@ public class GameController {
     private Label timeLabel;
 
     @FXML
+    private VBox Vbox;
+
+    @FXML
     private Label enemyStarsLabel;
 
     @FXML
@@ -46,19 +64,32 @@ public class GameController {
     @FXML
     private ImageView nextCardImageView;
 
+    @FXML
+    private Button backToMenuButton;
+
     public void initialize(){
         frameRate=View.getFrameRate();
         model=new Model();
         view=new View();
         cardListView.setItems(model.getFriendlyDeck().getShowDeck());
+        Vbox.setVisible(false);
         elixirLabel.setText("");
         timeLabel.setText("");
         enemyStarsLabel.setText("");
         friendlyStarsLabel.setText("");
         endGameLabel.setText("");
+        backToMenuButton.setVisible(false);
         nextCardImageView.setPreserveRatio(true);
         nextCardImageView.setFitHeight(55);
         nextCardImageView.setImage(new Image(model.getFriendlyDeck().getNextCard().getPhoto()));
+        cardListView.setCellFactory(
+                new Callback<ListView<Card>, ListCell<Card>>() {
+                    @Override
+                    public ListCell<Card> call(ListView<Card> listView) {
+                        return new ImageTextCell(70);
+                    }
+                }
+        );
         startTimer();
 
     }
@@ -86,11 +117,57 @@ public class GameController {
 
 
             elixirLabel.setText(""+model.getFriendlyElixir().getAmount());
+            elixirLabel.setAlignment(Pos.CENTER);
             timeLabel.setText(""+model.getTimer().getSeconds());
             enemyStarsLabel.setText(model.getEnemyStars());
             friendlyStarsLabel.setText(model.getFriendlyStars());
             nextCardImageView.setImage(new Image(model.getFriendlyDeck().getNextCard().getPhoto()));
+        }else {
+            pause();
+            String endGame = model.endGame();
+            Vbox.setVisible(true);
+            endGameLabel.setText(endGame);
+            stop(4);
+            backToMenuButton.setVisible(true);
+
+
+
         }
+    }
+    @FXML
+    void backToMenuClicked(ActionEvent event) {
+        switchToMenu(event);
+    }
+
+    public void switchToMenu(ActionEvent event) {
+        try {
+            Stage stage;
+            Scene scene;
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
+            stage.setScene(scene);
+            stage.show();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void stop(int seconds){
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+
+        }catch (InterruptedException e){
+
+        }
+    }
+
+    public void pause(){
+        this.timer.cancel();
     }
 
 
@@ -100,6 +177,7 @@ public class GameController {
         model.friendlyAddComponent(cardListView.getSelectionModel().getSelectedItem(),new Point2D(event.getX(),event.getY()));
     }
 
-
-
+    public Pane getGamePane() {
+        return gamePane;
+    }
 }
