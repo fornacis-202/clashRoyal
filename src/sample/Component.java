@@ -4,10 +4,10 @@ import javafx.geometry.Point2D;
 
 public abstract class Component {
     private Point2D position;
-    private int range;
+    private double range;
     private Role role;
 
-    public Component(Point2D position , int range,Role role){
+    public Component(Point2D position , double range,Role role){
         this.position=position;
         this.range=range;
         this.role=role;
@@ -17,7 +17,7 @@ public abstract class Component {
         return role;
     }
 
-    public int getRange() {
+    public double getRange() {
         return range;
     }
 
