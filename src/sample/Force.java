@@ -15,6 +15,7 @@ public abstract class Force extends Component {
     public Force(Point2D position , int range,Role role, double hitSpeed, int HP, int damage, Class targetType, boolean isAreaSplash){
         super(position,range,role);
         this.hitSpeed=hitSpeed;
+        this.HP=HP;
         this.damage=damage;
         this.targetType=targetType;
         this.isAttacking=false;

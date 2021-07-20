@@ -124,7 +124,7 @@ public class ComponentGenerator {
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
-                components.add(new DefenseBuilding(position1,7,Role.CANNON,1.0,HP,damage,Force.class,false,null));
+                components.add(new DefenseBuilding(position1,7,Role.KING_TOWER,1.0,HP,damage,Force.class,false,null));
             }
 
         }
@@ -134,7 +134,7 @@ public class ComponentGenerator {
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
-                components.add(new DefenseBuilding(position1,8,Role.CANNON,0.8,HP,damage,Force.class,false,null));
+                components.add(new DefenseBuilding(position1,8,Role.ARCHER_TOWER,0.8,HP,damage,Force.class,false,null));
             }
 
         }

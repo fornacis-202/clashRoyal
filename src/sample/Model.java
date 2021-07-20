@@ -3,6 +3,7 @@ package sample;
 import javafx.geometry.Point2D;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Model {
     private Account account;
@@ -124,16 +125,19 @@ public class Model {
 
 
     private void removeIfDead(){
-        for (Component component : friendlyComponent){
+        Iterator<Component> it = friendlyComponent.iterator();
+        Component component;
+        while (it.hasNext()){
+            component = it.next();
             if(component instanceof DefenseBuilding){
                 DefenseBuilding defenseBuilding = (DefenseBuilding) component;
                 if(defenseBuilding.getDuration()!= null && defenseBuilding.getDuration()<=0){
-                    friendlyComponent.remove(defenseBuilding);
+                    it.remove();
                 }
             }if(component instanceof Force){
                 Force force = (Force) component;
                 if(force.getHP()<=0){
-                    friendlyComponent.remove(force);
+                    it.remove();
                     if( force.getRole().equals(Role.ARCHER_TOWER)){
                         enemyStars += "*";
                     }else if(force.getRole().equals(Role.KING_TOWER)){
@@ -144,20 +148,22 @@ public class Model {
             }else if(component instanceof Spell){
                 Spell spell = (Spell) component;
                 if(spell.getDuration()<=0){
-                    friendlyComponent.remove(spell);
+                    it.remove();
                 }
             }
         }
-        for (Component component : enemyComponent){
+        Iterator<Component> it2 = enemyComponent.iterator();
+        while (it2.hasNext()){
+            component = it2.next();
             if(component instanceof DefenseBuilding){
                 DefenseBuilding defenseBuilding = (DefenseBuilding) component;
                 if(defenseBuilding.getDuration()!= null && defenseBuilding.getDuration()<=0){
-                    enemyComponent.remove(defenseBuilding);
+                    it2.remove();
                 }
             }if(component instanceof Force){
                 Force force = (Force) component;
                 if(force.getHP()<=0){
-                    enemyComponent.remove(force);
+                    it2.remove();
                     if( force.getRole().equals(Role.ARCHER_TOWER)){
                         friendlyStars += "*";
                     }else if(force.getRole().equals(Role.KING_TOWER)){
@@ -168,7 +174,7 @@ public class Model {
             }else if(component instanceof Spell){
                 Spell spell = (Spell) component;
                 if(spell.getDuration()<=0){
-                    enemyComponent.remove(spell);
+                    it2.remove();
                 }
             }
         }
@@ -188,7 +194,7 @@ public class Model {
                    walk((Soldier) force,magnitude);
                 }
             }
-            if(component instanceof DefenseBuilding && !component.getRole().equals(Role.ARCHER_TOWER) && !component.getRole().equals(Role.KING_TOWER)){
+            if(component instanceof DefenseBuilding && !(component.getRole().equals(Role.ARCHER_TOWER)) && !(component.getRole().equals(Role.KING_TOWER))){
                 DefenseBuilding defenseBuilding = (DefenseBuilding) component;
                 defenseBuilding.stepDuration(frameRate);
             }
