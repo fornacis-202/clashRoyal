@@ -139,6 +139,7 @@ public class View {
         this.fireball =  new Image("file:images/fire ball/fireball.gif");
 
 
+
     }
 
     public void update(Model model) {

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -17,6 +19,11 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
+                  <ImageView fitHeight="543.0" fitWidth="450.0">
+                     <image>
+                        <Image url="@profile.png" />
+                     </image>
+                  </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="543.0" prefWidth="450.0" spacing="5.0">
                      <children>
                         <Label fx:id="nameLabel" styleClass="boldlabel" text="Name">
@@ -54,6 +61,11 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
+                  <ImageView fitHeight="543.0" fitWidth="450.0">
+                     <image>
+                        <Image url="@deck.png" />
+                     </image>
+                  </ImageView>
                   <HBox alignment="CENTER" prefHeight="544.0" prefWidth="450.0">
                      <children>
                         <ListView fx:id="deckListView" prefHeight="544.0" prefWidth="118.0">
@@ -84,8 +96,13 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="82.0" layoutY="139.0" mnemonicParsing="false" onAction="#playWithSmartBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with smart bot" textFill="#f0a141" />
-                  <Button layoutX="238.0" layoutY="345.0" mnemonicParsing="false" onAction="#playWithIdiotBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with idiot bot" />
+                  <ImageView fitHeight="544.0" fitWidth="450.0">
+                     <image>
+                        <Image url="@play.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="69.0" layoutY="203.0" mnemonicParsing="false" onAction="#playWithSmartBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with smart bot" textFill="#f0a141" />
+                  <Button layoutX="255.0" layoutY="329.0" mnemonicParsing="false" onAction="#playWithIdiotBotPressed" style="-fx-background-color: #f0a141;" styleClass="colorwhite" text="Play with idiot bot" />
                </children></AnchorPane>
         </content>
       </Tab>

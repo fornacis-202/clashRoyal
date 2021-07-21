@@ -5,16 +5,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" spacing="25.0" stylesheets="@meanmenu.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Clash Of Royal!" textAlignment="CENTER">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
+      <ImageView fitHeight="148.0" fitWidth="323.0">
+         <image>
+            <Image url="@login.png" />
+         </image>
+         <VBox.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="-30.0" />
+         </VBox.margin>
+      </ImageView>
       <TextField fx:id="usernameTextField" promptText="Username">
          <font>
             <Font size="14.0" />
@@ -23,7 +28,7 @@
          <font>
             <Font size="14.0" />
          </font></PasswordField>
-      <Label fx:id="incorrectUserPassLabel" styleClass="colorred" maxHeight="-Infinity" prefHeight="13.0" prefWidth="170.0" text="Username or password is incorrect" textFill="RED" visible="false">
+      <Label fx:id="incorrectUserPassLabel" maxHeight="-Infinity" prefHeight="13.0" prefWidth="170.0" styleClass="colorred" text="Username or password is incorrect" textFill="RED" visible="false">
          <font>
             <Font size="11.0" />
          </font>

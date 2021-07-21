@@ -11,8 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+
 
 import java.io.IOException;
 
@@ -85,6 +89,7 @@ public class MenuController {
         historyListView.setItems(historyList);
 
 
+
     }
 
     @FXML
@@ -140,5 +145,7 @@ public class MenuController {
             e.printStackTrace();
         }
     }
+
+
 
 }
