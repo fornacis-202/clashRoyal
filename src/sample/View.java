@@ -169,7 +169,7 @@ public class View {
             } else if (component.getRole().equals(Role.RAGE)) {
                 updateSpell((Spell) component, rage, 100);
             } else if (component.getRole().equals(Role.ARROW)) {
-                updateSpell((Spell) component, arrows, 100);
+                updateSpell((Spell) component, arrows, 150);
             } else if (component.getRole().equals(Role.FIRE_BALL)) {
                 updateSpell((Spell) component, fireball, 50);
             }
@@ -201,9 +201,9 @@ public class View {
             } else if (component.getRole().equals(Role.RAGE)) {
                 updateSpell((Spell) component, rage, 100);
             } else if (component.getRole().equals(Role.ARROW)) {
-                updateSpell((Spell) component, arrows, 100);
+                updateSpell((Spell) component, arrows, 1500);
             } else if (component.getRole().equals(Role.FIRE_BALL)) {
-                updateSpell((Spell) component, arrows, 50);
+                updateSpell((Spell) component, fireball, 50);
             }
         }
     }
@@ -244,7 +244,7 @@ public class View {
         imageView.setX(defenseBuilding.getPosition().getX() - subtractingX);
         imageView.setY(defenseBuilding.getPosition().getY() - subtractingY);
         ProgressBar healthBar = new ProgressBar();
-        healthBar.setLayoutX(defenseBuilding.getPosition().getX() - subtractingX);
+        healthBar.setLayoutX(defenseBuilding.getPosition().getX() - subtractingX-20);
         healthBar.setLayoutY(defenseBuilding.getPosition().getY() - subtractingY-5);
         healthBar.setScaleX(0.3);
         healthBar.setScaleY(0.3);

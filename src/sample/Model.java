@@ -62,7 +62,7 @@ public class Model {
 
     }
     public void friendlyAddComponent(Card card,Point2D position){
-        if(card.getCost()<=friendlyElixir.getAmount() && whichArea(position) == 1){
+        if(card.getCost()<=friendlyElixir.getAmount() && (whichArea(position) == 1 || card.getRole().equals(Role.RAGE) || card.getRole().equals(Role.FIRE_BALL) || card.getRole().equals(Role.ARROW))){
             friendlyElixir.reduceAmount(card.getCost());
             friendlyDeck.removeCard(card);
             friendlyComponent.addAll(ComponentGenerator.generate(card.getRole(),position,card.getLevel(),card.getCount()));
@@ -85,12 +85,12 @@ public class Model {
 
 
         }
-        account.getHistory().add(account.getName(),friendlyStars,bot.toString(),enemyStars);
+        account.getHistory().add(account.getName(),friendlyStars,bot.name(),enemyStars);
         account.saveAccount();
         return output;
     }
     private void enemyAddComponent(Card card,Point2D position){
-        if(card.getCost()<=enemyElixir.getAmount() && whichArea(position) == 3){
+        if(card.getCost()<=enemyElixir.getAmount() && (whichArea(position) == 3 || card.getRole().equals(Role.RAGE) || card.getRole().equals(Role.FIRE_BALL) || card.getRole().equals(Role.ARROW))){
             enemyElixir.reduceAmount(card.getCost());
             enemyDeck.removeCard(card);
             enemyComponent.addAll(ComponentGenerator.generate(card.getRole(),position,card.getLevel(),card.getCount()));
@@ -112,7 +112,7 @@ public class Model {
         checkTimeEnd();
 
 
-        //update view
+
 
     }
 
@@ -221,7 +221,7 @@ public class Model {
         for (Component component:enemyComponent){
             if(component instanceof Force && component.getPosition().distance(spell.getPosition()) <= spell.getRange()*tile){
                 Force force = (Force) component;
-                force.reduceHP((int) (spell.getParameter()/(frameRate * spell.getDuration())));
+                force.reduceHP((int) (spell.getParameter()/(frameRate * 3)));
             }
         }
     }
