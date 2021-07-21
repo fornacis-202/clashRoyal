@@ -2,7 +2,16 @@ package sample;
 
 import java.util.ArrayList;
 
+/**
+ * The type Card generator.
+ */
 public class CardGenerator {
+    /**
+     * Generate array list.
+     *
+     * @param level the level
+     * @return the array list
+     */
     public static ArrayList<Card> generate(int level){
         ArrayList<Card> cards = new ArrayList<>();
         cards.add(new Card(Role.BARBARIAN,4,5,level,"file:images/barbar/card.png"));

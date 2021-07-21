@@ -5,6 +5,9 @@ import javafx.geometry.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * The type Model.
+ */
 public class Model {
     private Account account;
     private ArrayList<Component> friendlyComponent;
@@ -28,6 +31,9 @@ public class Model {
     private final int tile=20;
 
 
+    /**
+     * Instantiates a new Model.
+     */
     public Model(){
         account= SharedData.getAccount();
         friendlyComponent=new ArrayList<>();
@@ -67,6 +73,13 @@ public class Model {
         enemyComponent.addAll(ComponentGenerator.generate(Role.KING_TOWER,new Point2D(655,222),account.getLevel(),1));
 
     }
+
+    /**
+     * Friendly add component.
+     *
+     * @param card     the card
+     * @param position the position
+     */
     public void friendlyAddComponent(Card card,Point2D position){
         if(card.getCost()<=friendlyElixir.getAmount() && (whichArea(position) == 1 || card.getRole().equals(Role.RAGE) || card.getRole().equals(Role.FIRE_BALL) || card.getRole().equals(Role.ARROW))){
             friendlyElixir.reduceAmount(card.getCost());
@@ -74,6 +87,12 @@ public class Model {
             friendlyComponent.addAll(ComponentGenerator.generate(card.getRole(),position,card.getLevel(),card.getCount()));
         }
     }
+
+    /**
+     * End game string.
+     *
+     * @return the string
+     */
     public String endGame(){
         String output;
         if(friendlyStars.length() > enemyStars.length()){
@@ -95,6 +114,13 @@ public class Model {
         account.saveAccount();
         return output;
     }
+
+    /**
+     * Enemy add component.
+     *
+     * @param card     the card
+     * @param position the position
+     */
     public void enemyAddComponent(Card card,Point2D position){
         if(card.getCost()<=enemyElixir.getAmount() && (whichArea(position) == 3 || card.getRole().equals(Role.RAGE) || card.getRole().equals(Role.FIRE_BALL) || card.getRole().equals(Role.ARROW))){
             enemyElixir.reduceAmount(card.getCost());
@@ -104,6 +130,11 @@ public class Model {
     }
 
 
+    /**
+     * Update.
+     *
+     * @param counter the counter
+     */
     public void update(long counter){
         timer.step(counter);
         friendlyElixir.step(counter);
@@ -187,6 +218,15 @@ public class Model {
         }
     }
 
+    /**
+     * Step.
+     *
+     * @param component         the component
+     * @param friendlyComponent the friendly component
+     * @param enemyComponent    the enemy component
+     * @param counter           the counter
+     * @param magnitude         the magnitude
+     */
     public void step(Component component , ArrayList<Component> friendlyComponent,ArrayList<Component> enemyComponent, long counter,double magnitude){
         if(component instanceof Force){
             Force force = (Force) component;
@@ -353,42 +393,92 @@ public class Model {
 
     }
 
+    /**
+     * Sets account.
+     *
+     * @param account the account
+     */
     public void setAccount(Account account) {
         this.account = account;
     }
 
+    /**
+     * Gets account.
+     *
+     * @return the account
+     */
     public Account getAccount() {
         return account;
     }
 
+    /**
+     * Gets friendly deck.
+     *
+     * @return the friendly deck
+     */
     public DeckInGame getFriendlyDeck() {
         return friendlyDeck;
     }
 
+    /**
+     * Is game is finished boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGameIsFinished() {
         return gameIsFinished;
     }
 
+    /**
+     * Gets friendly elixir.
+     *
+     * @return the friendly elixir
+     */
     public ElixirGenerator getFriendlyElixir() {
         return friendlyElixir;
     }
 
+    /**
+     * Gets timer.
+     *
+     * @return the timer
+     */
     public MyTimer getTimer() {
         return timer;
     }
 
+    /**
+     * Gets friendly stars.
+     *
+     * @return the friendly stars
+     */
     public String getFriendlyStars() {
         return friendlyStars;
     }
 
+    /**
+     * Gets enemy stars.
+     *
+     * @return the enemy stars
+     */
     public String getEnemyStars() {
         return enemyStars;
     }
 
+    /**
+     * Gets friendly component.
+     *
+     * @return the friendly component
+     */
     public ArrayList<Component> getFriendlyComponent() {
         return friendlyComponent;
     }
 
+    /**
+     * Gets enemy component.
+     *
+     * @return the enemy component
+     */
     public ArrayList<Component> getEnemyComponent() {
         return enemyComponent;
     }

@@ -5,7 +5,18 @@ import javafx.geometry.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * The type Smart robot.
+ */
 public class SmartRobot extends Robot {
+    /**
+     * Instantiates a new Smart robot.
+     *
+     * @param enemyComponent    the enemy component
+     * @param friendlyComponent the friendly component
+     * @param deck              the deck
+     * @param model             the model
+     */
     public SmartRobot(ArrayList<Component> enemyComponent, ArrayList<Component> friendlyComponent, DeckInGame deck, Model model){
         super(enemyComponent,friendlyComponent,deck,model);
     }

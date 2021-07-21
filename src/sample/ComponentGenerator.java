@@ -4,8 +4,21 @@ import javafx.geometry.Point2D;
 
 import java.util.ArrayList;
 
+/**
+ * The type Component generator.
+ */
 public class ComponentGenerator {
     private static final int distance=10;
+
+    /**
+     * Generate array list.
+     *
+     * @param role     the role
+     * @param position the position
+     * @param level    the level
+     * @param count    the count
+     * @return the array list
+     */
     public static ArrayList<Component> generate(Role role, Point2D position, int level, int count){
         ArrayList<Component> components = new ArrayList<>();
         if(role.equals(Role.BARBARIAN)){

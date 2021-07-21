@@ -20,6 +20,9 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
+/**
+ * The type Menu controller.
+ */
 public class MenuController {
     private Account account;
     private final ObservableList<Card> notDeckCards = FXCollections.observableArrayList();
@@ -45,6 +48,9 @@ public class MenuController {
     @FXML
     private ListView<Card> deckListViewProfile;
 
+    /**
+     * Initialize.
+     */
     public void initialize(){
         account= SharedData.getAccount();
         deckListView.setItems(account.getDeck());
@@ -92,6 +98,11 @@ public class MenuController {
 
     }
 
+    /**
+     * Add button pressed.
+     *
+     * @param event the event
+     */
     @FXML
     void addButtonPressed(ActionEvent event) {
         if(account.getDeck().size()<8){
@@ -103,6 +114,11 @@ public class MenuController {
         }
     }
 
+    /**
+     * Play with idiot bot pressed.
+     *
+     * @param event the event
+     */
     @FXML
     void playWithIdiotBotPressed(ActionEvent event) {
         if(account.getDeck().size()==8){
@@ -112,6 +128,11 @@ public class MenuController {
 
     }
 
+    /**
+     * Play with smart bot pressed.
+     *
+     * @param event the event
+     */
     @FXML
     void playWithSmartBotPressed(ActionEvent event) {
         if(account.getDeck().size()==8){
@@ -121,6 +142,11 @@ public class MenuController {
 
     }
 
+    /**
+     * Remove button pressed.
+     *
+     * @param event the event
+     */
     @FXML
     void removeButtonPressed(ActionEvent event) {
         Card card = deckListView.getSelectionModel().getSelectedItem();
@@ -130,6 +156,12 @@ public class MenuController {
         }
 
     }
+
+    /**
+     * Switch to game.
+     *
+     * @param event the event
+     */
     public void switchToGame(ActionEvent event) {
         try {
             Stage stage;

@@ -1,5 +1,15 @@
 package sample;
 
+/**
+ * The enum Bot.
+ */
 public enum Bot {
-    IDIOT_BOT,SMART_BOT
+    /**
+     * Idiot bot bot.
+     */
+    IDIOT_BOT,
+    /**
+     * Smart bot bot.
+     */
+    SMART_BOT
 }

@@ -16,6 +16,9 @@ import jfxtras.styles.jmetro.Style;
 
 import java.io.IOException;
 
+/**
+ * The type Login controller.
+ */
 public class LoginController {
     private AccountReturner accountReturner;
 
@@ -28,10 +31,18 @@ public class LoginController {
     @FXML
     private Label incorrectUserPassLabel;
 
+    /**
+     * Initialize.
+     */
     public void initialize(){
         accountReturner=new AccountReturner();
     }
 
+    /**
+     * Login pressed.
+     *
+     * @param event the event
+     */
     @FXML
     void loginPressed(ActionEvent event) {
         Account account = accountReturner.login(usernameTextField.getText(),passwordTextField.getText());
@@ -47,6 +58,11 @@ public class LoginController {
 
     }
 
+    /**
+     * Register pressed.
+     *
+     * @param event the event
+     */
     @FXML
     void registerPressed(ActionEvent event) {
         Account account = accountReturner.register(usernameTextField.getText(),passwordTextField.getText());
@@ -61,6 +77,12 @@ public class LoginController {
         }
 
     }
+
+    /**
+     * Switch to menu.
+     *
+     * @param event the event
+     */
     public void switchToMenu(ActionEvent event) {
         try {
             Stage stage;

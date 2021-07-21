@@ -6,6 +6,9 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The type Account.
+ */
 public class Account implements Serializable {
     private String name;
     private int XP;
@@ -13,6 +16,12 @@ public class Account implements Serializable {
     private ArrayList<Card> deckToSave;
     private transient ObservableList<Card> deck ;
     private History history;
+
+    /**
+     * Instantiates a new Account.
+     *
+     * @param name the name
+     */
     public Account(String name){
         this.name=name;
         deckToSave=new ArrayList<>();
@@ -21,12 +30,24 @@ public class Account implements Serializable {
         XP=0;
         history=new History();
     }
+
+    /**
+     * Add a card to deck.
+     *
+     * @param card the card
+     */
     public void addDeck(Card card){
         if(deck.size()<8){
             deck.add(card);
             saveAccount();
         }
     }
+
+    /**
+     * Remove card from deck.
+     *
+     * @param card the card
+     */
     public void removeDeck(Card card){
         deck.remove(card);
         saveAccount();
@@ -44,10 +65,20 @@ public class Account implements Serializable {
             level=5;
 
     }
+
+    /**
+     * Add xp.
+     *
+     * @param addAmount the add amount
+     */
     public void addXP(int addAmount){
         XP+=addAmount;
         calculateLevel();
     }
+
+    /**
+     * Save account.
+     */
     public void saveAccount(){
         try {
             putInSimpleArray();
@@ -65,6 +96,13 @@ public class Account implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Load account account.
+     *
+     * @param name the name
+     * @return the account
+     */
     public static Account loadAccount(String name){
         try {
 
@@ -85,28 +123,57 @@ public class Account implements Serializable {
         deckToSave=new ArrayList<>();
         deckToSave.addAll(deck);
     }
+
+    /**
+     * Initialize deck.
+     */
     public void initializeDeck(){
         deck=FXCollections.observableArrayList();
         deck.addAll(deckToSave);
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets history.
+     *
+     * @return the history
+     */
     public History getHistory() {
         return history;
     }
 
+    /**
+     * Gets level.
+     *
+     * @return the level
+     */
     public int getLevel() {
         calculateLevel();
         return level;
     }
 
+    /**
+     * Gets xp.
+     *
+     * @return the xp
+     */
     public int getXP() {
         return XP;
     }
 
+    /**
+     * Gets deck.
+     *
+     * @return the deck
+     */
     public ObservableList<Card> getDeck() {
         return deck;
     }

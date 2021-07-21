@@ -11,12 +11,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * The type Image text cell.
+ */
 public class ImageTextCell extends ListCell<Card> {
     private VBox vbox = new VBox(0); // 4 points of gap between controls
     private ImageView thumbImageView = new ImageView(); // initially empty
     private Label label = new Label();
 
-    // constructor configures VBox, ImageView and Label
+    /**
+     * Instantiates a new Image text cell.
+     *
+     * @param height the height
+     */
+// constructor configures VBox, ImageView and Label
     public ImageTextCell(double height) {
         vbox.setAlignment(Pos.CENTER); // center VBox contents horizontally
 

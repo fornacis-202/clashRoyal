@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+/**
+ * The type View.
+ */
 public class View {
     private static final int frameRate=10;
 
@@ -71,11 +74,9 @@ public class View {
     private Pane pane;
 
 
-
-
-
-
-
+    /**
+     * Instantiates a new View.
+     */
     public View(){
         this.archerAL =  new Image("file:images/archer/attacking-left.gif");
         this.archerAR =  new Image("file:images/archer/attacking-right.gif");
@@ -142,6 +143,11 @@ public class View {
 
     }
 
+    /**
+     * Update.
+     *
+     * @param model the model
+     */
     public void update(Model model) {
         pane.getChildren().clear();
         for (Component component : model.getFriendlyComponent()) {
@@ -341,12 +347,20 @@ public class View {
     }
 
 
-
-
+    /**
+     * Gets frame rate.
+     *
+     * @return the frame rate
+     */
     public static int getFrameRate() {
         return frameRate;
     }
 
+    /**
+     * Sets pane.
+     *
+     * @param pane the pane
+     */
     public void setPane(Pane pane) {
         this.pane = pane;
     }

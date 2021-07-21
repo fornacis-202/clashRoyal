@@ -3,8 +3,15 @@ package sample;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The type Account returner.
+ */
 public class AccountReturner {
     private ArrayList<User> users;
+
+    /**
+     * Instantiates a new Account returner.
+     */
     public AccountReturner(){
         users=new ArrayList<>();
         loadUsers();
@@ -24,6 +31,10 @@ public class AccountReturner {
 
         }
     }
+
+    /**
+     * Save users.
+     */
     public void saveUsers(){
         try {
             File file = new File("users");
@@ -41,6 +52,14 @@ public class AccountReturner {
         }
 
     }
+
+    /**
+     * Login account.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the account
+     */
     public Account login(String username,String password){
         User user = new User(username,password);
         for (User user1 : users){
@@ -52,6 +71,14 @@ public class AccountReturner {
         }
         return null;
     }
+
+    /**
+     * Register account.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the account
+     */
     public Account register(String username,String password){
         User user = new User(username,password);
         for (User user1 : users){

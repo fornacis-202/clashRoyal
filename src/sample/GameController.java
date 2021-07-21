@@ -28,6 +28,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The type Game controller.
+ */
 public class GameController {
     private  int frameRate ;
     private Model model;
@@ -67,6 +70,9 @@ public class GameController {
     @FXML
     private Button backToMenuButton;
 
+    /**
+     * Initialize.
+     */
     public void initialize(){
         frameRate=View.getFrameRate();
         model=new Model();
@@ -110,6 +116,9 @@ public class GameController {
         this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
     }
 
+    /**
+     * Update.
+     */
     public void update(){
         if(! model.isGameIsFinished()){
             counter++;
@@ -133,11 +142,22 @@ public class GameController {
 
         }
     }
+
+    /**
+     * Back to menu clicked.
+     *
+     * @param event the event
+     */
     @FXML
     void backToMenuClicked(ActionEvent event) {
         switchToMenu(event);
     }
 
+    /**
+     * Switch to menu.
+     *
+     * @param event the event
+     */
     public void switchToMenu(ActionEvent event) {
         try {
             Stage stage;
@@ -156,6 +176,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Stop.
+     *
+     * @param seconds the seconds
+     */
     public void stop(int seconds){
         try {
             TimeUnit.SECONDS.sleep(seconds);
@@ -165,18 +190,30 @@ public class GameController {
         }
     }
 
+    /**
+     * Pause.
+     */
     public void pause(){
         this.timer.cancel();
     }
 
 
-
+    /**
+     * Mouse clicked on pane.
+     *
+     * @param event the event
+     */
     @FXML
     void mouseClickedOnPane(MouseEvent event) {
         //System.out.println("X:" + event.getX() + "   Y:" + event.getY());
         model.friendlyAddComponent(cardListView.getSelectionModel().getSelectedItem(),new Point2D(event.getX(),event.getY()));
     }
 
+    /**
+     * Gets game pane.
+     *
+     * @return the game pane
+     */
     public Pane getGamePane() {
         return gamePane;
     }
