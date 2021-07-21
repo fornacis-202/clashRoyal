@@ -155,17 +155,17 @@ public class View {
             } else if (component.getRole().equals(Role.PEKKA)) {
                 updateSoldier((Soldier) component, pekaAR, pekaAL, pekaWR, pekaWl, 40);
             } else if (component.getRole().equals(Role.VALKYRIE)) {
-                updateSoldier((Soldier) component, valkyrieAR, valkyrieAL, valkyrieWR, valkyrieWl, 70);
+                updateSoldier((Soldier) component, valkyrieAR, valkyrieAL, valkyrieWR, valkyrieWl, 90);
             } else if (component.getRole().equals(Role.WIZARD)) {
                 updateSoldier((Soldier) component, wizardAR, wizardAL, wizardWR, wizardWl, 40);
             } else if (component.getRole().equals(Role.ARCHER_TOWER)) {
-                updateDefenseBuilding((DefenseBuilding) component, archerTowerAR, archerTowerAL, archerTowerSR, archerTowerSl, 85, 1);
+                updateDefenseBuilding((DefenseBuilding) component, archerTowerAR, archerTowerAL, archerTowerSR, archerTowerSl, 115, 1);
             } else if (component.getRole().equals(Role.KING_TOWER)) {
-                updateDefenseBuilding((DefenseBuilding) component, kingTowerAR, kingTowerAL, kingTowerSR, kingTowerSl, 90, 1);
+                updateDefenseBuilding((DefenseBuilding) component, kingTowerAR, kingTowerAL, kingTowerSR, kingTowerSl, 125, 1);
             } else if (component.getRole().equals(Role.INFERNO)) {
                 updateDefenseBuilding((DefenseBuilding) component, infernoA, infernoA, infernoS, infernoS, 90, 1);
             } else if (component.getRole().equals(Role.CANNON)) {
-                updateDefenseBuilding((DefenseBuilding) component, cannonAR, cannonAL, cannonSR, cannonSL, 100, 1);
+                updateCannon((DefenseBuilding) component, cannonAR, cannonAL, cannonSR, cannonSL, 100, 1);
             } else if (component.getRole().equals(Role.RAGE)) {
                 updateSpell((Spell) component, rage, 100);
             } else if (component.getRole().equals(Role.ARROW)) {
@@ -187,21 +187,21 @@ public class View {
             } else if (component.getRole().equals(Role.PEKKA)) {
                 updateSoldier((Soldier) component, pekaAR, pekaAL, pekaWR, pekaWl, 40);
             } else if (component.getRole().equals(Role.VALKYRIE)) {
-                updateSoldier((Soldier) component, valkyrieAR, valkyrieAL, valkyrieWR, valkyrieWl, 70);
+                updateSoldier((Soldier) component, valkyrieAR, valkyrieAL, valkyrieWR, valkyrieWl, 90);
             } else if (component.getRole().equals(Role.WIZARD)) {
                 updateSoldier((Soldier) component, wizardAR, wizardAL, wizardWR, wizardWl, 40);
             } else if (component.getRole().equals(Role.ARCHER_TOWER)) {
-                updateDefenseBuilding((DefenseBuilding) component, archerTowerAR, archerTowerAL, archerTowerSR, archerTowerSl, 85, 3);
+                updateDefenseBuilding((DefenseBuilding) component, archerTowerAR, archerTowerAL, archerTowerSR, archerTowerSl, 115, 3);
             } else if (component.getRole().equals(Role.KING_TOWER)) {
-                updateDefenseBuilding((DefenseBuilding) component, kingTowerAR, kingTowerAL, kingTowerSR, kingTowerSl, 90, 3);
+                updateDefenseBuilding((DefenseBuilding) component, kingTowerAR, kingTowerAL, kingTowerSR, kingTowerSl, 125, 3);
             } else if (component.getRole().equals(Role.INFERNO)) {
-                updateDefenseBuilding((DefenseBuilding) component, infernoA, infernoA, infernoS, infernoS, 70, 3);
+                updateDefenseBuilding((DefenseBuilding) component, infernoA, infernoA, infernoS, infernoS, 90, 3);
             } else if (component.getRole().equals(Role.CANNON)) {
-                updateDefenseBuilding((DefenseBuilding) component, cannonAR, cannonAL, cannonSR, cannonSL, 70, 3);
+                updateCannon((DefenseBuilding) component, cannonAR, cannonAL, cannonSR, cannonSL, 100, 3);
             } else if (component.getRole().equals(Role.RAGE)) {
                 updateSpell((Spell) component, rage, 100);
             } else if (component.getRole().equals(Role.ARROW)) {
-                updateSpell((Spell) component, arrows, 1500);
+                updateSpell((Spell) component, arrows, 150);
             } else if (component.getRole().equals(Role.FIRE_BALL)) {
                 updateSpell((Spell) component, fireball, 50);
             }
@@ -240,11 +240,11 @@ public class View {
         imageView.setPreserveRatio(true);
         imageView.setFitHeight(height);
         double subtractingY = height * 2 / 3 ;
-        double subtractingX = imageView.prefWidth(height)/2;
+        double subtractingX = imageView.prefWidth(height)* 1/2;
         imageView.setX(defenseBuilding.getPosition().getX() - subtractingX);
         imageView.setY(defenseBuilding.getPosition().getY() - subtractingY);
         ProgressBar healthBar = new ProgressBar();
-        healthBar.setLayoutX(defenseBuilding.getPosition().getX() - subtractingX-20);
+        healthBar.setLayoutX(defenseBuilding.getPosition().getX() - 70);
         healthBar.setLayoutY(defenseBuilding.getPosition().getY() - subtractingY-5);
         healthBar.setScaleX(0.3);
         healthBar.setScaleY(0.3);
@@ -259,7 +259,7 @@ public class View {
         double angel = 0;
         if(cannon.isAttacking()){
             angel=calculateAngel(cannon);
-            if(angel<=90){
+            if(cannon.getPosition().getX() < cannon.getTarget().getPosition().getX()){
                 imageView.setImage(ar);
             }else {
                 imageView.setImage(al);
@@ -280,7 +280,7 @@ public class View {
         imageView.setX(cannon.getPosition().getX() - subtractingX);
         imageView.setY(cannon.getPosition().getY() - subtractingY);
         ProgressBar healthBar = new ProgressBar();
-        healthBar.setLayoutX(cannon.getPosition().getX() - subtractingX-20);
+        healthBar.setLayoutX(cannon.getPosition().getX() - 30);
         healthBar.setLayoutY(cannon.getPosition().getY() - 40);
         healthBar.setScaleX(0.3);
         healthBar.setScaleY(0.3);
@@ -295,14 +295,14 @@ public class View {
         ImageView imageView = new ImageView();
         double angel = calculateAngel(soldier);
         if(soldier.isAttacking()){
-            if(angel<=90){
+            if(soldier.getPosition().getX() < soldier.getTarget().getPosition().getX()){
                 imageView.setImage(ar);
             }else {
                 imageView.setImage(al);
             }
 
         }else {
-            if(angel<=90){
+            if(soldier.getPosition().getX() < soldier.getTarget().getPosition().getX()){
                 imageView.setImage(wr);
             }else {
                 imageView.setImage(wl);
@@ -316,7 +316,7 @@ public class View {
         imageView.setX(soldier.getPosition().getX() - subtractingX);
         imageView.setY(soldier.getPosition().getY() - subtractingY);
         ProgressBar healthBar = new ProgressBar();
-        healthBar.setLayoutX(soldier.getPosition().getX() - subtractingX-20);
+        healthBar.setLayoutX(soldier.getPosition().getX() - 30 );
         healthBar.setLayoutY(soldier.getPosition().getY() - 40);
         healthBar.setScaleX(0.3);
         healthBar.setScaleY(0.3);

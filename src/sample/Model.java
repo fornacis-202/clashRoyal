@@ -20,6 +20,7 @@ public class Model {
     private DeckInGame friendlyDeck;
     private DeckInGame enemyDeck;
     private Bot bot;
+    private Robot robot;
 
 
     private final int frameRate;
@@ -41,6 +42,11 @@ public class Model {
         friendlyDeck=new DeckInGame(account.getDeck());
         enemyDeck=new DeckInGame(account.getDeck());
         this.bot=SharedData.getBot();
+        if(bot.equals(Bot.IDIOT_BOT)){
+            robot = new IdiotRobot(friendlyComponent,enemyComponent,enemyDeck,this);
+        }else {
+            robot = new SmartRobot(friendlyComponent,enemyComponent,enemyDeck,this);
+        }
         initialize();
 
 
@@ -51,14 +57,14 @@ public class Model {
 
 
     private void initialize(){
-        bridge1=new Bridge(new Point2D(340,90));
-        bridge2=new Bridge(new Point2D(340,360));
-        friendlyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(50,85),account.getLevel(),1));
-        friendlyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(50,360),account.getLevel(),1));
-        friendlyComponent.addAll(ComponentGenerator.generate(Role.KING_TOWER,new Point2D(50,222),account.getLevel(),1));
-        enemyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(700,85),account.getLevel(),1));
-        enemyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(700,360),account.getLevel(),1));
-        enemyComponent.addAll(ComponentGenerator.generate(Role.KING_TOWER,new Point2D(700,222),account.getLevel(),1));
+        bridge1=new Bridge(new Point2D(376,85));
+        bridge2=new Bridge(new Point2D(376,373));
+        friendlyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(115,85),account.getLevel(),1));
+        friendlyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(115,359),account.getLevel(),1));
+        friendlyComponent.addAll(ComponentGenerator.generate(Role.KING_TOWER,new Point2D(95,222),account.getLevel(),1));
+        enemyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(635,85),account.getLevel(),1));
+        enemyComponent.addAll(ComponentGenerator.generate(Role.ARCHER_TOWER,new Point2D(635,359),account.getLevel(),1));
+        enemyComponent.addAll(ComponentGenerator.generate(Role.KING_TOWER,new Point2D(655,222),account.getLevel(),1));
 
     }
     public void friendlyAddComponent(Card card,Point2D position){
@@ -89,7 +95,7 @@ public class Model {
         account.saveAccount();
         return output;
     }
-    private void enemyAddComponent(Card card,Point2D position){
+    public void enemyAddComponent(Card card,Point2D position){
         if(card.getCost()<=enemyElixir.getAmount() && (whichArea(position) == 3 || card.getRole().equals(Role.RAGE) || card.getRole().equals(Role.FIRE_BALL) || card.getRole().equals(Role.ARROW))){
             enemyElixir.reduceAmount(card.getCost());
             enemyDeck.removeCard(card);
@@ -102,6 +108,7 @@ public class Model {
         timer.step(counter);
         friendlyElixir.step(counter);
         enemyElixir.step(counter);
+        robot.move();
         for(Component component : friendlyComponent){
             step(component,friendlyComponent,enemyComponent,counter,1.0);
         }
@@ -251,7 +258,7 @@ public class Model {
     private void hitInferno(DefenseBuilding defenseBuilding, ArrayList<Component> enemyComponent,double magnitude){
         ArrayList<Force> damagedForces = new ArrayList<>();
         for(Component component : enemyComponent){
-            if(defenseBuilding.getTargetType().isInstance(component) && defenseBuilding.getPosition().distance(component.getPosition()) <defenseBuilding.getRange()){
+            if(defenseBuilding.getTargetType().isInstance(component) && defenseBuilding.getPosition().distance(component.getPosition()) <defenseBuilding.getRange() * tile){
                 Force targetForce = (Force) component;
                 damagedForces.add(targetForce);
 
@@ -265,7 +272,7 @@ public class Model {
 
     private void hitValkyrie(Force force, ArrayList<Component> enemyComponent,double magnitude){
         for(Component component : enemyComponent){
-            if(force.getTargetType().isInstance(component) && force.getPosition().distance(component.getPosition()) <2* tile){
+            if(force.getTargetType().isInstance(component) && force.getPosition().distance(component.getPosition()) <force.getRange()* tile){
                 Force targetForce = (Force) component;
                 targetForce.reduceHP((int) (force.getDamage()*magnitude));
 
@@ -300,7 +307,7 @@ public class Model {
 
 
     private void walk(Soldier soldier,double magnitude){
-        if((whichArea(soldier.getPosition()) ==1 && whichArea(soldier.getTarget().getPosition())==3 ) || (whichArea(soldier.getPosition()) ==3 && whichArea(soldier.getTarget().getPosition())==1 ) ){
+        if((whichArea(soldier.getPosition()) ==1 && whichArea(soldier.getTarget().getPosition())==3 ) || (whichArea(soldier.getPosition()) ==3 && whichArea(soldier.getTarget().getPosition())==1 ) || (whichArea(soldier.getPosition()) ==0 )){
             soldier.setTarget(((soldier.getPosition().distance(bridge1.getPosition()) > soldier.getPosition().distance(bridge2.getPosition()))? bridge2 : bridge1));
         }
         soldier.move(calculateDirection(soldier.getPosition(),soldier.getTarget().getPosition()).multiply(magnitude/frameRate));
@@ -308,6 +315,12 @@ public class Model {
     }
 
     private Point2D calculateDirection(Point2D start , Point2D destination){
+        if(whichArea(start)==2){
+            if(start.getX() < destination.getX())
+                return new Point2D(1,0).multiply(step);
+            else
+                return  new Point2D(-1,0).multiply(step);
+        }
         double distance = start.distance(destination);
         double x = (destination.getX()-start.getX())/distance;
         double y = (destination.getY()-start.getY())/distance;
@@ -329,11 +342,11 @@ public class Model {
     }
 
     private int whichArea(Point2D position){
-        if(position.distance(bridge1.getPosition())<10|| position.distance(bridge2.getPosition())<10){
+        if((position.distance(bridge1.getPosition())<55 && (position.getY()>bridge1.getPosition().getY()-35 && position.getY()<bridge1.getPosition().getY()+5) )|| (position.distance(bridge2.getPosition())<55 && (position.getY()>bridge2.getPosition().getY()-35 && position.getY()<bridge2.getPosition().getY()+5))){
             return 2;
-        }else if(position.getX()<335){
+        }else if(position.getX()<345){
             return 1;
-        }else if(position.getX()>335) {
+        }else if(position.getX()>407) {
             return 3;
         }else
             return 0;

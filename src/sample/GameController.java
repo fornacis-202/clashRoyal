@@ -173,6 +173,7 @@ public class GameController {
 
     @FXML
     void mouseClickedOnPane(MouseEvent event) {
+        //System.out.println("X:" + event.getX() + "   Y:" + event.getY());
         model.friendlyAddComponent(cardListView.getSelectionModel().getSelectedItem(),new Point2D(event.getX(),event.getY()));
     }
 

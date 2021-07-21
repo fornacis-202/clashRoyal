@@ -99,6 +99,7 @@ public class Account implements Serializable {
     }
 
     public int getLevel() {
+        calculateLevel();
         return level;
     }
 

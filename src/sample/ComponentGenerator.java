@@ -14,7 +14,7 @@ public class ComponentGenerator {
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
-                components.add(new GroundSoldier(position1,1.7,Role.BARBARIAN,1.5,HP,damage,Ground.class,false,Speed.MEDIUM));
+                components.add(new GroundSoldier(position1,1.2,Role.BARBARIAN,1.5,HP,damage,Ground.class,false,Speed.MEDIUM));
             }
 
         }else if(role.equals(Role.ARCHER)){
@@ -51,7 +51,7 @@ public class ComponentGenerator {
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
-                components.add(new GroundSoldier(position1,1.7,Role.PEKKA,1.8,HP,damage,Ground.class,false,Speed.FAST));
+                components.add(new GroundSoldier(position1,1.2,Role.PEKKA,1.8,HP,damage,Ground.class,false,Speed.FAST));
             }
 
         }else if(role.equals(Role.GIANT)){
@@ -60,7 +60,7 @@ public class ComponentGenerator {
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
-                components.add(new GroundSoldier(position1,1.7,Role.GIANT,1.5,HP,damage,DefenseBuilding.class,false,Speed.SLOW));
+                components.add(new GroundSoldier(position1,1.2,Role.GIANT,1.5,HP,damage,DefenseBuilding.class,false,Speed.SLOW));
             }
 
         }
@@ -70,7 +70,7 @@ public class ComponentGenerator {
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
-                components.add(new GroundSoldier(position1,1.7,Role.VALKYRIE,1.5,HP,damage,Ground.class,true,Speed.MEDIUM));
+                components.add(new GroundSoldier(position1,2.5,Role.VALKYRIE,1.5,HP,damage,Ground.class,true,Speed.MEDIUM));
             }
 
         }
@@ -110,7 +110,7 @@ public class ComponentGenerator {
         }
         else if(role.equals(Role.INFERNO)){
             int HP=92*level + 700;
-            int damage = 46* level + 550;
+            int damage = 6* level + 50;
 
             for (int i=0;i<count;i++){
                 Point2D position1=new Point2D(position.getX(),position.getY()+distance*i);
