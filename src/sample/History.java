@@ -11,7 +11,7 @@ public class History implements Serializable {
         games=new ArrayList<>();
     }
     public void add(String playerName , String playerStars , String opponentName, String opponentStars){
-        String game = "                              ";
+        String game = "                                ";
         game +=String.format("%4s", playerStars);
         game+="      ";
         game+=String.format("%15s", playerName);
